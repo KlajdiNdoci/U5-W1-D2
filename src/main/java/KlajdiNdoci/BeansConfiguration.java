@@ -1,9 +1,6 @@
 package KlajdiNdoci;
 
-import KlajdiNdoci.entities.Bevanda;
-import KlajdiNdoci.entities.Pizza;
-import KlajdiNdoci.entities.Topping;
-import KlajdiNdoci.entities.Vino;
+import KlajdiNdoci.entities.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -76,5 +73,19 @@ public class BeansConfiguration {
     @Bean
     Vino vino() {
         return new Vino("vino", 128, 1.29, 0.75);
+    }
+
+    @Bean
+    Menú getMenu(){
+        List<Pizza> pizzaList = new ArrayList<>();
+        List<Bevanda> bevandaList = new ArrayList<>();
+        pizzaList.add(margherita());
+        pizzaList.add(diavola());
+        pizzaList.add(hawaiana());
+        bevandaList.add(limonata());
+        bevandaList.add(acqua());
+        bevandaList.add(vino());
+        return new Menú(pizzaList, bevandaList);
+
     }
 }
