@@ -86,6 +86,10 @@ public class BeansConfiguration {
         bevandaList.add(acqua());
         bevandaList.add(vino());
         return new Menú(pizzaList, bevandaList);
+    }
 
+    @Bean
+    Tavolo getTavolo(){
+        return new Tavolo(1, 4);
     }
 }
