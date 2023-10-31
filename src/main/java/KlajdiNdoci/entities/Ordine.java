@@ -26,16 +26,16 @@ public class Ordine {
     private StatoOrdine statoOrdine;
     private int numeroCoperti;
     private double importoTotale;
-    @Value("${costo.coperto}")
-    private double costoCoperto;
+    private int costoCoperto;
 
-    public Ordine(List<Pizza> pizze, List<Bevanda> bevande, @Value("${numeroCoperti}") int numeroCoperti, Tavolo tavolo ) {
+    public Ordine(List<Pizza> pizze, List<Bevanda> bevande,@Value("${numero.coperti}")int numeroCoperti,@Value("${costo.coperto}")int costoCoperto, Tavolo tavolo ) {
         Random rndm = new Random();
         this.numeroOrdine = rndm.nextInt();
         this.orarioAcquisizione = LocalTime.now();
         this.pizze = pizze;
         this.bevande = bevande;
         this.tavolo = tavolo;
+        this.costoCoperto = costoCoperto;
         if (numeroCoperti > tavolo.getNumeroCopertiMax()) {
             throw new IllegalArgumentException("Il numero di coperti supera il massimo consentito.");
         } else {
@@ -50,6 +50,7 @@ public class Ordine {
         for (Bevanda bevanda: bevande) {
             importoBevande += bevanda.getPrezzo();
         }
-        this.importoTotale = importoPizze + importoBevande + (numeroCoperti * costoCoperto);
+        int totCoperti = numeroCoperti * costoCoperto;;
+        this.importoTotale = importoPizze + importoBevande + totCoperti;
     }
 }
