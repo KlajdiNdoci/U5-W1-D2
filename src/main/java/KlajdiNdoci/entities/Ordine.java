@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
+import java.text.DecimalFormat;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Random;
@@ -15,7 +16,6 @@ import java.util.Random;
 @Getter
 @Setter
 @ToString
-@Component
 @PropertySource("application.properties")
 public class Ordine {
     private long numeroOrdine;
@@ -26,7 +26,6 @@ public class Ordine {
     private StatoOrdine statoOrdine;
     private int numeroCoperti;
     private double importoTotale;
-    private int costoCoperto;
 
     public Ordine(List<Pizza> pizze, List<Bevanda> bevande,@Value("${numero.coperti}")int numeroCoperti,@Value("${costo.coperto}")int costoCoperto, Tavolo tavolo ) {
         Random rndm = new Random();
@@ -35,7 +34,6 @@ public class Ordine {
         this.pizze = pizze;
         this.bevande = bevande;
         this.tavolo = tavolo;
-        this.costoCoperto = costoCoperto;
         if (numeroCoperti > tavolo.getNumeroCopertiMax()) {
             throw new IllegalArgumentException("Il numero di coperti supera il massimo consentito.");
         } else {
