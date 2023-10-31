@@ -1,6 +1,7 @@
 package KlajdiNdoci;
 
 import KlajdiNdoci.entities.*;
+import KlajdiNdoci.enums.StatoTavolo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -93,7 +94,7 @@ public class BeansConfiguration {
         return new Tavolo(1, 4);
     }
 
-@Bean
+    @Bean
     @Scope("prototype")
     Ordine getOrdine(){
     List<Pizza> pizzaList = new ArrayList<>();
@@ -102,7 +103,9 @@ public class BeansConfiguration {
     pizzaList.add(margherita());
     bevandaList.add(acqua());
     bevandaList.add(limonata());
-    return new Ordine(pizzaList, bevandaList, getTavolo(), 5);
-}
+    getTavolo().setStatoTavolo(StatoTavolo.OCCUPATO);
+    return new Ordine(pizzaList, bevandaList, 4, getTavolo());
+    }
+
 
 }
