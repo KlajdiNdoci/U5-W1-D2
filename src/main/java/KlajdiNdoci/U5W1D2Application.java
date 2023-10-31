@@ -17,6 +17,7 @@ public class U5W1D2Application {
 	public static void configurationClass() {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(U5W1D2Application.class);
 		System.out.println(ctx.getBean("getMenu"));
+		System.out.println(ctx.getBean("getOrdine"));
 		ctx.close();
 	}
 }
