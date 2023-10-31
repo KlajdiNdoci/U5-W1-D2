@@ -104,7 +104,7 @@ public class BeansConfiguration {
     bevandaList.add(acqua());
     bevandaList.add(limonata());
     getTavolo().setStatoTavolo(StatoTavolo.OCCUPATO);
-    return new Ordine(pizzaList, bevandaList, 4,2, getTavolo());
+    return new Ordine(pizzaList, bevandaList, 3,2, getTavolo());
     }
 
 

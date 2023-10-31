@@ -27,7 +27,7 @@ public class Ordine {
     private int numeroCoperti;
     private double importoTotale;
 
-    public Ordine(List<Pizza> pizze, List<Bevanda> bevande,@Value("${numero.coperti}")int numeroCoperti,@Value("${costo.coperto}")int costoCoperto, Tavolo tavolo ) {
+    public Ordine(List<Pizza> pizze, List<Bevanda> bevande,int numeroCoperti,@Value("${costo.coperto}")int costoCoperto, Tavolo tavolo ) {
         Random rndm = new Random();
         this.numeroOrdine = rndm.nextInt();
         this.orarioAcquisizione = LocalTime.now();
