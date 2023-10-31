@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.Random;
 @Getter
 @Setter
 @ToString
+@Component
 public class Ordine {
     private long numeroOrdine;
     private LocalDateTime orarioAcquisizione;
@@ -33,21 +35,20 @@ public class Ordine {
         this.pizze = pizze;
         this.bevande = bevande;
         this.tavolo = tavolo;
-        this.numeroCoperti = numeroCoperti;
-        this.statoOrdine = StatoOrdine.IN_CORSO;
-        double importoPizze = 0;
-        double importoBevande = 0;
-        for (Pizza pizza: pizze) {
-            importoPizze += pizza.getPrezzo();
+        if (numeroCoperti > tavolo.getNumeroCopertiMax()) {
+            throw new IllegalArgumentException("Il numero di coperti supera il massimo consentito.");
+        } else {
+            this.numeroCoperti = numeroCoperti;
         }
-        for (Bevanda bevanda: bevande) {
-            importoBevande += bevanda.getPrezzo();
-        }
-        this.importoTotale = importoPizze+importoBevande+(numeroCoperti * costoCoperto);
-    }
-
-    public double calcTotale(){
-
-        return importoTotale;
+//        this.statoOrdine = StatoOrdine.IN_CORSO;
+//        double importoPizze = 0;
+//        double importoBevande = 0;
+//        for (Pizza pizza: pizze) {
+//            importoPizze += pizza.getPrezzo();
+//        }
+//        for (Bevanda bevanda: bevande) {
+//            importoBevande += bevanda.getPrezzo();
+//        }
+//        this.importoTotale = importoPizze+importoBevande+(numeroCoperti * costoCoperto);
     }
 }

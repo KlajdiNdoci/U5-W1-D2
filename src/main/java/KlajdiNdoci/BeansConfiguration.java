@@ -93,16 +93,16 @@ public class BeansConfiguration {
         return new Tavolo(1, 4);
     }
 
-    @Bean
+@Bean
     @Scope("prototype")
     Ordine getOrdine(){
-        List<Pizza> pizzaList = new ArrayList<>();
-        List<Bevanda> bevandaList = new ArrayList<>();
-        pizzaList.add(margherita());
-        pizzaList.add(margherita());
-        bevandaList.add(acqua());
-        bevandaList.add(limonata());
-        return new Ordine(pizzaList, bevandaList,getTavolo());
-    }
+    List<Pizza> pizzaList = new ArrayList<>();
+    List<Bevanda> bevandaList = new ArrayList<>();
+    pizzaList.add(margherita());
+    pizzaList.add(margherita());
+    bevandaList.add(acqua());
+    bevandaList.add(limonata());
+    return new Ordine(pizzaList, bevandaList, getTavolo(), 5);
+}
 
 }
